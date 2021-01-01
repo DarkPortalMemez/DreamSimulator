@@ -1,0 +1,10 @@
+C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.exe
+C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.deps.json
+C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.runtimeconfig.json
+C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.runtimeconfig.dev.json
+C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.dll
+C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.pdb
+C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.AssemblyInfoInputs.cache
+C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.AssemblyInfo.cs
+C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.dll
+C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.pdb

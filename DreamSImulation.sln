@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamSImulation", "DreamSImulation\DreamSImulation.csproj", "{2977FF02-B6D9-447E-8415-FD330C933829}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2977FF02-B6D9-447E-8415-FD330C933829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2977FF02-B6D9-447E-8415-FD330C933829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2977FF02-B6D9-447E-8415-FD330C933829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2977FF02-B6D9-447E-8415-FD330C933829}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A8F7AC1-2893-41E5-8290-533189029F7B}
+	EndGlobalSection
+EndGlobal
