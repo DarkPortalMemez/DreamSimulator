@@ -92,15 +92,58 @@ namespace DreamSImulation
             {
                 tradeCountArray[i] = Simulate(PearlChance, PearlsToStop);
             }
+            Console.WriteLine("Done simulating!");
             Array.Sort(tradeCountArray);
+            Console.WriteLine("Done sorting!");
             string[] tradeStringArray = new string[tradeCountArray.Length];
-            for (int i = 0; i < tradeStringArray.Length; i++)
+            int first = 0;
+            int repeats = 0;
+            int lines = 0;
+            #region firstline
+            if (tradeCountArray[0] == tradeCountArray[1])
             {
-                float percentage =  (float)PearlsToStop / tradeCountArray[i] * 100F;
-                tradeStringArray[i] = $"{tradeCountArray[i]} - {percentage}% | the #{i+1} luckiest simulation";
+                repeats++;
+                if (tradeCountArray[0] != tradeCountArray[first])
+                {
+                    first = 0;
+                }
             }
+            else
+            {
+                tradeStringArray[lines] = $"{tradeCountArray[0]} - {PearlsToStop / ((float)tradeCountArray[0]) * 100f}% | Entry #1";
+                lines++;
+            }
+            #endregion
+            for (int i = 1; i < tradeStringArray.Length; i++)
+            {
+                float percentage = (float)PearlsToStop / tradeCountArray[i] * 100F;
+                if (i != tradeCountArray.Length - 1 && tradeCountArray[i] == tradeCountArray[i + 1])
+                {
+                    repeats++;
+                    if (tradeCountArray[i] != tradeCountArray[first])
+                    {
+                        first = i;
+                    }
+                }
+                else if (tradeCountArray[i] == tradeCountArray [i-1])
+                {
+                    tradeStringArray[lines] = $"{tradeCountArray[i]} - {(PearlsToStop / ((float)tradeCountArray[i])) * 100f}% | Entries #{first+1}-{i+1}";
+                    lines++;
+                }
+                else
+                {
+                    tradeStringArray[lines] = $"{tradeCountArray[i]} - {(PearlsToStop / ((float)tradeCountArray[i])) * 100f}% | Entry #{i+1}";
+                    lines++;
+                }
+            }
+            string[] filteredTradeStringArray = new string[lines];
+            for (int i = 0; i < filteredTradeStringArray.Length; i++)
+            {
+                filteredTradeStringArray[i] = tradeStringArray[i];
+            }
+            Console.WriteLine("Done naming!");
             System.IO.Directory.CreateDirectory(@"Output");
-            System.IO.File.WriteAllLines(@"Output\DreamSim.txt", tradeStringArray);
+            System.IO.File.WriteAllLines(@"Output\DreamSim.txt", filteredTradeStringArray);
 
         }
         static int Simulate(int pearlChance, int pearlsToStop)
