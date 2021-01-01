@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\YardenSharoni\\source\\repos\\DreamSImulation\\DreamSImulation\\DreamSImulation.csproj",
+      "projectUniqueName": "D:\\New folder (2)\\DreamSimulator\\DreamSImulation\\DreamSImulation.csproj",
       "projectName": "DreamSImulation",
-      "projectPath": "C:\\Users\\YardenSharoni\\source\\repos\\DreamSImulation\\DreamSImulation\\DreamSImulation.csproj",
+      "projectPath": "D:\\New folder (2)\\DreamSimulator\\DreamSImulation\\DreamSImulation.csproj",
       "packagesPath": "C:\\Users\\YardenSharoni\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\YardenSharoni\\source\\repos\\DreamSImulation\\DreamSImulation\\obj\\",
+      "outputPath": "D:\\New folder (2)\\DreamSimulator\\DreamSImulation\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\YardenSharoni\\AppData\\Roaming\\NuGet\\NuGet.Config",
