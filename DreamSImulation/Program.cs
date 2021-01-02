@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Threading.Tasks;
 
 namespace DreamSImulation
 {
@@ -12,9 +12,10 @@ namespace DreamSImulation
             int Simulations;
             #region pearlbartnerset
             Console.WriteLine("How many pearls until you stop bartnering? (leave blank for 12)");
-            setPTS:
+        setPTS:
             string PTSString = Console.ReadLine();
-            if (PTSString == string.Empty) {
+            if (PTSString == string.Empty)
+            {
                 PearlsToStop = 12;
                 goto doneSettingPTS;
             }
@@ -28,15 +29,16 @@ namespace DreamSImulation
                 goto setPTS;
             }
             PearlsToStop = Convert.ToInt32(PTSString);
-            if (PearlsToStop < 1) {
+            if (PearlsToStop < 1)
+            {
                 Console.WriteLine("Please only use positive numbers, enter a new number");
                 goto setPTS;
             }
-            doneSettingPTS:
+        doneSettingPTS:
             #endregion
             #region pearlchanceset
             Console.WriteLine("Chance for pearl to drop (accurate to .1%) (leave blank for 4.7%)");
-            setPC:
+        setPC:
             string PCstring = Console.ReadLine();
 
             if (PCstring == string.Empty)
@@ -53,17 +55,17 @@ namespace DreamSImulation
                 Console.WriteLine("Please only use digits 1 - 9, and a decimal ., enter a new number");
                 goto setPC;
             }
-            PearlChance = (int)(Convert.ToDouble(PCstring)*10);
+            PearlChance = (int)(Convert.ToDouble(PCstring) * 10);
             if (PearlChance <= 0)
             {
                 Console.WriteLine("Please only use positive numbers, enter a new number");
                 goto setPC;
             }
-            doneSettingPC:
+        doneSettingPC:
             #endregion
             #region simset
             Console.WriteLine("simulations to run? (leave blank for 100k)");
-            setSims:
+        setSims:
             string SimString = Console.ReadLine();
             if (SimString == string.Empty)
             {
@@ -85,54 +87,65 @@ namespace DreamSImulation
                 Console.WriteLine("Please only use positive numbers, enter a new number");
                 goto setSims;
             }
-            doneSettingSims:
+        doneSettingSims:
             #endregion
-            int[] tradeCountArray = new int[Simulations];
+            intposition[] tradeCountArray = new intposition[Simulations];
             for (int i = 0; i < tradeCountArray.Length; i++)
             {
-                tradeCountArray[i] = Simulate(PearlChance, PearlsToStop);
+                tradeCountArray[i] = new intposition();
             }
+            int[] tradeCountArrayPure = new int[Simulations];
+            for (int i = 0; i < tradeCountArray.Length; i++)
+            {
+                tradeCountArray[i].position = i;
+            }
+            Parallel.ForEach(tradeCountArray, (i) =>
+            {
+                tradeCountArrayPure[i.position] = Simulate(PearlChance, PearlsToStop);
+            }
+            );
+
             Console.WriteLine("Done simulating!");
-            Array.Sort(tradeCountArray);
+            Array.Sort(tradeCountArrayPure);
             Console.WriteLine("Done sorting!");
-            string[] tradeStringArray = new string[tradeCountArray.Length];
+            string[] tradeStringArray = new string[tradeCountArrayPure.Length];
             int first = 0;
             int repeats = 0;
             int lines = 0;
             #region firstline
-            if (tradeCountArray[0] == tradeCountArray[1])
+            if (tradeCountArrayPure[0] == tradeCountArrayPure[1])
             {
                 repeats++;
-                if (tradeCountArray[0] != tradeCountArray[first])
+                if (tradeCountArrayPure[0] != tradeCountArrayPure[first])
                 {
                     first = 0;
                 }
             }
             else
             {
-                tradeStringArray[lines] = $"{tradeCountArray[0]} - {PearlsToStop / ((float)tradeCountArray[0]) * 100f}% | Entry #1";
+                tradeStringArray[lines] = $"{tradeCountArrayPure[0]} - {PearlsToStop / ((float)tradeCountArrayPure[0]) * 100f}% | Entry #1";
                 lines++;
             }
             #endregion
             for (int i = 1; i < tradeStringArray.Length; i++)
             {
-                float percentage = (float)PearlsToStop / tradeCountArray[i] * 100F;
-                if (i != tradeCountArray.Length - 1 && tradeCountArray[i] == tradeCountArray[i + 1])
+                float percentage = (float)PearlsToStop / tradeCountArrayPure[i] * 100F;
+                if (i != tradeCountArrayPure.Length - 1 && tradeCountArrayPure[i] == tradeCountArrayPure[i + 1])
                 {
                     repeats++;
-                    if (tradeCountArray[i] != tradeCountArray[first])
+                    if (tradeCountArrayPure[i] != tradeCountArrayPure[first])
                     {
                         first = i;
                     }
                 }
-                else if (tradeCountArray[i] == tradeCountArray [i-1])
+                else if (tradeCountArrayPure[i] == tradeCountArrayPure[i - 1])
                 {
-                    tradeStringArray[lines] = $"{tradeCountArray[i]} - {(PearlsToStop / ((float)tradeCountArray[i])) * 100f}% | Entries #{first+1}-{i+1}";
+                    tradeStringArray[lines] = $"{tradeCountArrayPure[i]} - {(PearlsToStop / ((float)tradeCountArrayPure[i])) * 100f}% | Entries #{first + 1}-{i + 1}";
                     lines++;
                 }
                 else
                 {
-                    tradeStringArray[lines] = $"{tradeCountArray[i]} - {(PearlsToStop / ((float)tradeCountArray[i])) * 100f}% | Entry #{i+1}";
+                    tradeStringArray[lines] = $"{tradeCountArrayPure[i]} - {(PearlsToStop / ((float)tradeCountArrayPure[i])) * 100f}% | Entry #{i + 1}";
                     lines++;
                 }
             }
@@ -160,5 +173,10 @@ namespace DreamSImulation
             }
             return trades;
         }
-    }
+        public class intposition
+        {
+            public int _int { get; set; } = 0;
+            public int position { get; set; } = 0;
+        }
+    } 
 }

@@ -8,3 +8,13 @@ C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\obj\Release\
 C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.AssemblyInfo.cs
 C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.dll
 C:\Users\YardenSharoni\source\repos\DreamSImulation\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.pdb
+D:\New folder (2)\DreamSimulator\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.exe
+D:\New folder (2)\DreamSimulator\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.deps.json
+D:\New folder (2)\DreamSimulator\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.runtimeconfig.json
+D:\New folder (2)\DreamSimulator\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.runtimeconfig.dev.json
+D:\New folder (2)\DreamSimulator\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.dll
+D:\New folder (2)\DreamSimulator\DreamSImulation\bin\Release\netcoreapp3.1\DreamSImulation.pdb
+D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.AssemblyInfoInputs.cache
+D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.AssemblyInfo.cs
+D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.dll
+D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.pdb
