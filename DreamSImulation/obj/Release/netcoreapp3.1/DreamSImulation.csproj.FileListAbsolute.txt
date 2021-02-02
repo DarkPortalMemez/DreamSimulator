@@ -18,6 +18,3 @@ D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\Dream
 D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.AssemblyInfo.cs
 D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.dll
 D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.pdb
-D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.csprojAssemblyReference.cache
-D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.csproj.CoreCompileInputs.cache
-D:\New folder (2)\DreamSimulator\DreamSImulation\obj\Release\netcoreapp3.1\DreamSImulation.genruntimeconfig.cache

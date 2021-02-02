@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace DreamSImulation
 {
@@ -90,53 +89,94 @@ namespace DreamSImulation
             }
         doneSettingSims:
             #endregion
-            int[] percentages = new int[100000];
-            Parallel.For(0, Simulations, (i) =>
+            intposition[] tradeCountArray = new intposition[Simulations];
+            for (int i = 0; i < tradeCountArray.Length; i++)
             {
-                int amount;
-                amount = Simulate(PearlChance, PearlsToStop);
-                int precentage;
-                precentage = (int)((PearlChance / 10f) / amount * 100000F);
-                percentages[precentage]++;
-            });
+                tradeCountArray[i] = new intposition();
+            }
+            int[] tradeCountArrayPure = new int[Simulations];
+            for (int i = 0; i < tradeCountArray.Length; i++)
+            {
+                tradeCountArray[i].position = i;
+            }
+            Parallel.ForEach(tradeCountArray, (i) =>
+            {
+                tradeCountArrayPure[i.position] = Simulate(PearlChance, PearlsToStop);
+            }
+            );
+
             Console.WriteLine("Done simulating!");
-            List<DoubleInt> filteredPrecentagesList = new List<DoubleInt>();
-            int j = 0;
-            for (int i = 0; i < percentages.Length; i++)
+            Array.Sort(tradeCountArrayPure);
+            Console.WriteLine("Done sorting!");
+            string[] tradeStringArray = new string[tradeCountArrayPure.Length];
+            int first = 0;
+            int repeats = 0;
+            int lines = 0;
+            #region firstline
+            if (tradeCountArrayPure[0] == tradeCountArrayPure[1])
             {
-                if (percentages[i] != 0)
+                repeats++;
+                if (tradeCountArrayPure[0] != tradeCountArrayPure[first])
                 {
-                    filteredPrecentagesList.Add(new DoubleInt {Int = percentages[i], UtillityInt = i});
-                    j++;
+                    first = 0;
                 }
             }
-            string[] printArray = new string[filteredPrecentagesList.Count];
-            for (int i = 0; i < filteredPrecentagesList.Count; i++)
+            else
             {
-                int amount = (int)Math.Round(1F / (filteredPrecentagesList[i].UtillityInt / 100000F) * (PearlChance / 10f));
-                printArray[i] = $"{(float)PearlsToStop / (float)amount * 100F}% - {PearlsToStop} of {amount} | {filteredPrecentagesList[i].Int}";
+                tradeStringArray[lines] = $"{tradeCountArrayPure[0]} - {PearlsToStop / ((float)tradeCountArrayPure[0]) * 100f}% | Entry #1";
+                lines++;
             }
-            Array.Reverse(printArray);
-            System.IO.File.WriteAllLines(@"Output\DreamSim.txt", printArray);
-            static int Simulate(int pearlChance, int pearlsToStop)
+            #endregion
+            for (int i = 1; i < tradeStringArray.Length; i++)
             {
-                int trades = 0;
-                Random pearlRandom = new Random();
-                for (int pearls = 0; pearls < pearlsToStop;)
+                float percentage = (float)PearlsToStop / tradeCountArrayPure[i] * 100F;
+                if (i != tradeCountArrayPure.Length - 1 && tradeCountArrayPure[i] == tradeCountArrayPure[i + 1])
                 {
-                    trades++;
-                    if (pearlRandom.Next(0, 1000) < pearlChance)
+                    repeats++;
+                    if (tradeCountArrayPure[i] != tradeCountArrayPure[first])
                     {
-                        pearls++;
+                        first = i;
                     }
                 }
-                return trades;
+                else if (tradeCountArrayPure[i] == tradeCountArrayPure[i - 1])
+                {
+                    tradeStringArray[lines] = $"{tradeCountArrayPure[i]} - {(PearlsToStop / ((float)tradeCountArrayPure[i])) * 100f}% | Entries #{first + 1}-{i + 1}";
+                    lines++;
+                }
+                else
+                {
+                    tradeStringArray[lines] = $"{tradeCountArrayPure[i]} - {(PearlsToStop / ((float)tradeCountArrayPure[i])) * 100f}% | Entry #{i + 1}";
+                    lines++;
+                }
             }
+            string[] filteredTradeStringArray = new string[lines];
+            for (int i = 0; i < filteredTradeStringArray.Length; i++)
+            {
+                filteredTradeStringArray[i] = tradeStringArray[i];
+            }
+            Console.WriteLine("Done naming!");
+            System.IO.Directory.CreateDirectory(@"Output");
+            System.IO.File.WriteAllLines(@"Output\DreamSim.txt", filteredTradeStringArray);
+
         }
-        public class DoubleInt
+        static int Simulate(int pearlChance, int pearlsToStop)
         {
-            public int Int { get; set; } = 0;
-            public int UtillityInt { get; set; } = 0;
+            int trades = 0;
+            Random pearlRandom = new Random();
+            for (int pearls = 0; pearls < pearlsToStop;)
+            {
+                trades++;
+                if (pearlRandom.Next(0, 1000) < pearlChance)
+                {
+                    pearls++;
+                }
+            }
+            return trades;
+        }
+        public class intposition
+        {
+            public int _int { get; set; } = 0;
+            public int position { get; set; } = 0;
         }
     } 
 }
